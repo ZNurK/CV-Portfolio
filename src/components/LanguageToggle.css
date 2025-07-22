@@ -1,0 +1,27 @@
+/* src/components/LanguageToggle.css */
+
+.language-toggle {
+  display: flex;
+  gap: 5px;
+}
+
+.lang-button {
+  background-color: transparent;
+  color: #ffffff;
+  border: 1px solid #8c7ae6;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 14px;
+}
+
+.lang-button:hover {
+  background-color: #8c7ae6;
+}
+
+.lang-button.active {
+  background-color: #8c7ae6;
+  color: #ffffff;
+  border-color: #8c7ae6;
+}

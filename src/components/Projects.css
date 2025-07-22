@@ -1,0 +1,95 @@
+.projects-section {
+  padding: 80px 50px;
+  text-align: center;
+  background-color: #0d0c1d;
+  color: #ffffff;
+}
+
+.projects-section h2 {
+  font-size: 48px;
+  margin-bottom: 60px;
+  color: #ffffff;
+}
+
+.projects-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto 80px auto; /* Alttan boşluk bırak */
+}
+
+.project-card {
+  background-color: #1a1a2e;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+  text-align: left;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+}
+
+.project-card h3 {
+  font-size: 28px;
+  margin-bottom: 15px;
+  color: #8c7ae6;
+}
+
+.project-card .project-year {
+  font-size: 16px;
+  color: #ccc;
+  margin-bottom: 20px;
+}
+
+.project-card .project-description {
+  font-size: 17px;
+  line-height: 1.6;
+  color: #e0e0e0;
+}
+
+.university-projects {
+  max-width: 1000px;
+  margin: 0 auto 80px auto;
+  text-align: left;
+  padding: 30px;
+  background-color: #1a1a2e;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+}
+
+.university-projects h3 {
+  font-size: 32px;
+  margin-bottom: 30px;
+  color: #8c7ae6;
+  text-align: center;
+  border-bottom: 2px solid rgba(140, 122, 230, 0.5);
+  padding-bottom: 15px;
+}
+
+.university-projects ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.university-projects ul li {
+  font-size: 18px;
+  margin-bottom: 15px;
+  position: relative;
+  padding-left: 30px;
+  color: #e0e0e0;
+}
+
+.university-projects ul li::before {
+  content: '★'; /* Veya başka bir sembol */
+  color: #8c7ae6;
+  position: absolute;
+  left: 0;
+  font-size: 22px;
+  line-height: 1;
+}
+

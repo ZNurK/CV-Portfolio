@@ -1,0 +1,112 @@
+/* src/components/HeroSection.css */
+
+.hero-section {
+    padding: 100px 50px;
+    display: flex;
+    justify-content: center; /* İçeriği ortalar */
+    align-items: center;
+    /* gap: 50px; Resim kaldırıldığı için gap'e artık gerek yok */
+    text-align: left;
+    min-height: calc(100vh - 80px); /* Header yüksekliği çıkarıldı */
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content {
+    max-width: 800px; /* İçerik div'inin genişliği, resim olmayacağı için daha geniş olabilir */
+    z-index: 1;
+    /* justify-content: center; ve align-items: center; ile birlikte çalışabilmesi için margin-right veya auto margin gerekli olabilir */
+    text-align: center; /* Buton ve metinlerin ortalanması için */
+}
+
+.welcome-text {
+    font-size: 1.8em;
+    color: #8c7ae6;
+    margin-bottom: 10px;
+}
+
+.greeting-text {
+    font-size: 3.5em;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.about-text {
+    font-size: 1.2em;
+    color: #c0c0c0;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+/* Aşağıdaki .hero-image ve .hero-image img stillerini tamamen kaldırın */
+/* .hero-image {
+    display: none; // veya bu kısmı tamamen silin
+} */
+/* .hero-image img {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 0 30px rgba(140, 122, 230, 0.6);
+    border: 5px solid #8c7ae6;
+    transition: transform 0.4s ease-in-out;
+    z-index: 1;
+}
+
+.hero-image img:hover {
+    transform: scale(1.05);
+} */
+
+/* PDF İndirme Butonu Stili */
+.download-cv-button {
+  background-color: #8c7ae6;
+  color: #ffffff;
+  padding: 12px 25px;
+  border-radius: 5px;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  display: inline-block;
+  margin-top: 20px;
+}
+
+.download-cv-button:hover {
+  background-color: #6b5cd8;
+  transform: translateY(-3px);
+}
+
+/* Responsive düzenlemeler */
+@media (max-width: 992px) {
+    .hero-section {
+        flex-direction: column;
+        text-align: center;
+        padding: 80px 30px;
+        gap: 30px; /* Sütun düzeninde gap bırakılabilir */
+    }
+    .hero-content {
+        max-width: 100%; /* Mobil cihazlarda tam genişlik */
+    }
+    .greeting-text {
+        font-size: 2.8em;
+    }
+    .about-text {
+        font-size: 1.1em;
+    }
+    /* .hero-image stilleri de buradan kaldırılmalı */
+}
+
+@media (max-width: 576px) {
+    .hero-section {
+        padding: 60px 20px;
+    }
+    .greeting-text {
+        font-size: 2.2em;
+    }
+    .download-cv-button {
+        font-size: 1em;
+        padding: 10px 20px;
+    }
+}

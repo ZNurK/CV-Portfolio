@@ -1,0 +1,75 @@
+/* src/components/Experience.css */
+
+.experience-section {
+  padding: 80px 50px;
+  background-color: #0d0c1d; /* App.css'teki #skills ile aynı olsun, arkaplanı belirginleştirir */
+  color: #e0e0e0;
+  text-align: center;
+}
+
+.experience-section h2 {
+  font-size: 3em;
+  margin-bottom: 60px;
+  color: #ffffff;
+}
+
+.experience-container {
+  display: flex;
+  flex-direction: column; /* Deneyim maddeleri dikey sıralansın */
+  gap: 40px;
+  max-width: 900px; /* Deneyim kutularının genişliği */
+  margin: 0 auto;
+}
+
+.experience-item {
+  background-color: #1a1a2e; /* App.css'teki #projects ile aynı olsun */
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  text-align: left;
+}
+
+.experience-item h3 {
+  font-size: 1.8em;
+  color: #8c7ae6; /* Mor başlık */
+  margin-bottom: 10px;
+}
+
+.experience-item .company {
+  font-size: 1.2em;
+  color: #c0c0c0; /* Şirket ve konum için açık gri */
+  margin-bottom: 5px;
+}
+
+.experience-item .dates {
+  font-size: 1em;
+  color: #a0a0a0;
+  margin-bottom: 15px;
+}
+
+.experience-item .description {
+  font-size: 1.1em;
+  line-height: 1.6;
+  color: #e0e0e0;
+}
+
+/* Responsive düzenlemeler */
+@media (max-width: 768px) {
+  .experience-section {
+    padding: 60px 20px;
+  }
+  .experience-section h2 {
+    font-size: 2.5em;
+  }
+  .experience-item {
+    padding: 20px;
+  }
+  .experience-item h3 {
+    font-size: 1.5em;
+  }
+  .experience-item .company,
+  .experience-item .dates,
+  .experience-item .description {
+    font-size: 1em;
+  }
+}

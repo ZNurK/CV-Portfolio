@@ -1,0 +1,122 @@
+/* src/components/Skills.css */
+
+.skills-section {
+  padding: 80px 50px;
+  background-color: #0d0c1d;
+  color: #e0e0e0;
+  text-align: center;
+}
+
+.skills-section h2 {
+  font-size: 3em;
+  margin-bottom: 60px;
+  color: #ffffff;
+}
+
+.skills-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.skill-category {
+  background-color: #1a1a2e;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  flex: 1;
+  min-width: 300px;
+  max-width: 380px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Kategori Başlığı ve Tıklanabilir Alan */
+.category-toggle {
+  font-size: 1.8em;
+  color: #8c7ae6;
+  margin-bottom: 20px;
+  text-align: center;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  transition: color 0.3s ease;
+  user-select: none;
+  padding-bottom: 10px;
+  border-bottom: 2px solid rgba(140, 122, 230, 0.5);
+}
+
+.category-toggle:hover {
+  color: #a090e8;
+}
+
+/* İkon Stili */
+.toggle-icon {
+  font-size: 0.8em;
+  transition: transform 0.3s ease;
+}
+
+/* Accordion İçeriği (açılıp kapanan liste) */
+.accordion-content {
+  margin-top: 15px;
+  padding-top: 0;
+  max-height: 0; /* Gizli başlangıç durumu */
+  overflow: hidden;
+  transition: max-height 0.5s ease-out, opacity 0.5s ease-out;
+  opacity: 0; /* Gizli başlangıç durumu */
+  will-change: max-height, opacity;
+}
+
+/* Accordion açıldığında: 'open' sınıfı eklendiğinde içeriği göster */
+.accordion-content.open { /* BURAYI DEĞİŞTİRDİK */
+  max-height: 500px; /* İçeriğin yüksekliğine göre yeterince büyük bir değer verin */
+  opacity: 1;
+}
+
+.accordion-content ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.accordion-content ul li {
+  font-size: 1.1em;
+  margin-bottom: 12px;
+  position: relative;
+  padding-left: 25px;
+  color: #e0e0e0;
+}
+
+.accordion-content ul li::before {
+  content: '✦';
+  color: #8c7ae6;
+  position: absolute;
+  left: 0;
+  font-size: 0.9em;
+  line-height: 1.6;
+}
+
+/* Responsive düzenlemeler */
+@media (max-width: 768px) {
+  .skills-section {
+    padding: 60px 20px;
+  }
+  .skills-section h2 {
+    font-size: 2.5em;
+  }
+  .skills-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .skill-category {
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 20px;
+  }
+}

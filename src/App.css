@@ -1,0 +1,150 @@
+/* Genel Stil Resetleri */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth; /* Yumuşak kaydırma */
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Daha modern bir font */
+  line-height: 1.6;
+  background-color: #000000; /* Ana arka plan rengi, FlowingBackground için bir fallback veya alt katman */
+  color: #e0e0e0; /* Açık gri metin rengi */
+}
+
+.App {
+  position: relative; /* z-index için gerekli */
+  min-height: 100vh; /* Uygulamanın en az viewport yüksekliği kadar olmasını sağlar */
+  overflow: hidden; /* Taşmaları engeller */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Tüm içeriği sarmalayan ve FlowingBackground'ın üzerinde durmasını sağlayan wrapper */
+.content-wrapper {
+  position: relative; /* FlowingBackground'ın üzerinde olması için gerekli */
+  z-index: 1; /* FlowingBackground'ın z-index'i 0 olduğu için bu 1 olmalı */
+  /* padding-top ve padding-bottom ile içeriklerin kenarlara yapışmasını önleyebiliriz */
+  padding-bottom: 50px; /* Footer için boşluk */
+}
+
+section {
+  padding: 80px 50px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff; /* Siyah arkaplan üzerinde beyaz metin */
+  /* Artık section'lara doğrudan arka plan rengi vermiyoruz, FlowingBackground halledecek */
+  /* Eğer bölümler arasında belirgin bir ayrım istersen, aşağıdaki gibi hafif bir overlay ekleyebilirsin: */
+  /* background-color: rgba(0, 0, 0, 0.3); */ /* Hafif şeffaf siyah overlay */
+  /* backdrop-filter: blur(5px); */ /* Hafif bir bulanıklık ekleyebilirsin, performansa dikkat! */
+}
+
+/* Başlıkların genel stili */
+h1, h2, h3 {
+  color: #ffffff; /* Başlıklar beyaz olsun */
+  font-weight: 700;
+  margin-bottom: 20px; /* Başlıkların altına boşluk */
+}
+
+/* Linklerin genel stili */
+a {
+  color: #8c7ae6; /* Mor tonlarında linkler */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #6b5cd8;
+}
+
+/* Scrollbar stili (isteğe bağlı, daha şık bir görünüm için) */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0d0c1d;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #8c7ae6;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #6b5cd8;
+}
+
+/* Component spesifik stil ayarlamaları - Örn: Header için */
+header {
+  width: 100%; /* Header'ın genişliğini ayarla */
+  /* Diğer header stilleri */
+}
+
+/* Hero Section için stil (örnek) */
+#home {
+    /* HeroSection'ın içeriği için özel stil, arka plan yok */
+}
+
+/* Diğer Section'lar için (örnek) */
+#experience, #skills, #projects, #contact {
+    padding: 50px 20px;/* Özel padding, margin veya hizalama ayarları */
+    background-color: rgba(0,0,0,4); /* Koyu mor tonlarında hafif opak arkaplan */
+   
+}
+
+
+/* Footer için stil (örnek) */
+footer {
+  width: 100%;
+  padding: 20px 50px;
+  text-align: center;
+  color: #e0e0e0;
+  background-color: rgba(0, 0, 0, 0.5); /* Hafif şeffaf bir footer arka planı */
+  position: relative; /* content-wrapper içinde z-index ile çalışması için */
+  z-index: 2; /* Footer'ın diğer içeriklerin üzerinde olmasını istiyorsan */
+}
+
+/* Download CV Buton stili (HeroSection'da olabilir) */
+button {
+  background-color: #8c7ae6; /* Mor tonlarında buton */
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background-color: #6b5cd8;
+  transform: translateY(-2px);
+}
+
+/* Dil değiştirme butonları (Header'da olabilir) */
+.language-switcher button {
+  background: none;
+  border: 1px solid #8c7ae6;
+  color: #8c7ae6;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.language-switcher button.active {
+  background-color: #8c7ae6;
+  color: white;
+}
+
+.language-switcher button:hover:not(.active) {
+  background-color: rgba(140, 122, 230, 0.2);
+}
