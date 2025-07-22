@@ -6,8 +6,8 @@ const ParticleFlowBackground = () => {
   const animationFrameId = useRef(null);
 
   const PARTICLE_COUNT = 70;
-  const PARTICLE_COLOR = 'rgba(255, 255, 255, 0.4)';
-  const SPEED = 0.5;
+  const PARTICLE_COLOR = 'rgba(248, 241, 252, 1)';
+  const SPEED = 0.3;
 
   useEffect(() => {
     const canvas = canvasRef.current;
