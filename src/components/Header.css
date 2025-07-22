@@ -1,46 +1,54 @@
-/* src/components/Header.css */
-
 /* HEADER'in GENEL STİLİ */
 .header {
-  position: fixed; /* Header'ı sayfanın en üstünde sabit tutar */
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 1000; /* Diğer elementlerin üzerinde kalmasını sağlar */
+  z-index: 1000;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 20px 50px;
-  background-color: rgba(13, 12, 29, 0.9); /* Sonsuzluk temasına uygun, hafif şeffaf koyu arka plan */
-  backdrop-filter: blur(5px); /* Arka planı hafif bulanıklaştır */
+  background-color: rgba(13, 12, 29, 0.9);
+  backdrop-filter: blur(5px);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  /* Mobil menü açıldığında tüm ekranı kaplaması için */
+  transition: all 0.3s ease-in-out; /* Hamburger açılırken header'ın kendi geçişi */
 }
 
 /* LOGO KISMI */
 .logo {
-  display: flex; /* Logo resmini dikeyde ortalamak için */
+  display: flex;
   align-items: center;
 }
 
 .logo-image {
-  height: 60px; /* Logonuzun yüksekliğini buradan ayarlayabilirsiniz */
-  width: auto; /* Genişliği otomatik ayarlar, logonun oranını korur */
-  transition: transform 0.3s ease; /* Fare üzerine gelme animasyonu */
+  height: 60px;
+  width: auto;
+  transition: transform 0.3s ease;
 }
 
 .logo-image:hover {
-  transform: scale(1.05); /* Fare üzerine gelince hafif büyüme efekti */
+  transform: scale(1.05);
 }
+
+/* NAVİGASYON VE DİĞER ELEMENTLERİ SARAN KAPSAYICI */
+.nav-container {
+  display: flex;
+  align-items: center;
+  gap: 30px; /* Navbar, sosyal linkler, dil ve buton arasındaki boşluk */
+}
+
 
 /* NAVİGASYON BAĞLANTILARI */
 .navbar ul {
   list-style: none;
   display: flex;
-  gap: 30px; /* Menü öğeleri arasındaki boşluk */
+  gap: 30px;
 }
 
 .navbar ul li a {
-  color: #ffffff; /* Bağlantı metin rengi */
+  color: #ffffff;
   font-size: 18px;
   text-decoration: none;
   position: relative;
@@ -52,18 +60,18 @@
   position: absolute;
   width: 0;
   height: 2px;
-  background-color: #8c7ae6; /* Mor çizgi */
+  background-color: #8c7ae6;
   left: 0;
   bottom: -5px;
   transition: width 0.3s ease-in-out;
 }
 
 .navbar ul li a:hover::after {
-  width: 100%; /* Hover'da alt çizginin tam genişlemesi */
+  width: 100%;
 }
 
 .navbar ul li a:hover {
-  color: #8c7ae6; /* Hover'da metin rengi değişimi */
+  color: #8c7ae6;
 }
 
 /* SOSYAL MEDYA LİNKLERİ */
@@ -80,7 +88,7 @@
 
 .social-links a:hover {
   color: #8c7ae6;
-  transform: translateY(-3px); /* Hover'da hafif yukarı hareket */
+  transform: translateY(-3px);
 }
 
 /* "LET'S CONNECT" BUTONU */
@@ -93,51 +101,162 @@
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
-  text-decoration: none; /* Link olduğu için alt çizgiyi kaldır */
-  display: inline-block; /* Padding ve transform için */
+  text-decoration: none;
+  display: inline-block;
 }
 
 .connect-button:hover {
   background-color: #6b5cd8;
-  transform: scale(1.05); /* Hover'da hafif büyüme */
+  transform: scale(1.05);
 }
+
+/* HAMBURGER MENÜ BUTONU */
+.hamburger-menu {
+  display: none; /* Varsayılan olarak gizli (masaüstü görünümde) */
+  flex-direction: column;
+  justify-content: space-around;
+  width: 30px;
+  height: 25px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1001; /* Menü açıldığında en üstte kalması için */
+}
+
+.hamburger-menu .bar {
+  width: 100%;
+  height: 3px;
+  background-color: #ffffff; /* Hamburger çizgilerinin rengi */
+  border-radius: 5px;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Menü açıldığında hamburger ikonunun animasyonu (isteğe bağlı) */
+.header.menu-open .hamburger-menu .bar:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.header.menu-open .hamburger-menu .bar:nth-child(2) {
+  opacity: 0;
+}
+.header.menu-open .hamburger-menu .bar:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
 
 /* RESPONSIVE DÜZENLEMELER */
 @media (max-width: 992px) {
   .header {
-    flex-direction: column;
+    /* Mobil görünümde sadece logo ve hamburger gözükeceği için justify-content değişimi */
+    justify-content: space-between;
+    flex-wrap: nowrap; /* Elementlerin alt alta geçmesini engelle */
     padding: 15px 20px;
+    height: auto; /* Yüksekliği içeriğine göre ayarla */
+  }
+
+  /* Mobil görünümlerde tüm navigasyon elementlerini gizle */
+  .nav-container {
+    display: none; /* Varsayılan olarak gizle */
+    flex-direction: column;
+    justify-content: flex-start; /* İçerikleri yukarıdan başlasın */
+    align-items: center; /* Ortala */
+    position: fixed; /* Ekranı kaplaması için sabit konumlandır */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh; /* Tam ekran yüksekliği */
+    background-color: rgba(13, 12, 29, 0.95); /* Hafif daha koyu arka plan */
+    backdrop-filter: blur(10px); /* Daha fazla bulanıklık */
+    z-index: 999; /* Header'ın altında, ama diğer içeriklerin üstünde */
+    transform: translateX(100%); /* Başlangıçta ekranın sağında gizli */
+    transition: transform 0.4s ease-in-out; /* Açılış/kapanış animasyonu */
+    padding-top: 80px; /* Logonun ve hamburgerin altından başla */
+    overflow-y: auto; /* İçerik taşarsa scroll olsun */
+  }
+
+  /* Menü aktif olduğunda görünür yap */
+  .nav-container.active {
+    display: flex; /* Gözükmesini sağlar */
+    transform: translateX(0); /* Ekranın içine kaydır */
+  }
+
+  /* Hamburger menü ikonunu mobil cihazlarda göster */
+  .hamburger-menu {
+    display: flex; /* Mobil cihazlarda görünür yap */
   }
 
   .navbar ul {
     flex-direction: column;
-    gap: 10px;
-    margin-top: 15px;
+    gap: 20px; /* Mobil menü öğeleri arasındaki boşluk */
+    width: 100%; /* Genişlik ayarı */
+    text-align: center; /* Metinleri ortala */
+    padding: 0; /* Listelerde varsayılan padding'i kaldır */
   }
 
-  .social-links, .connect-button, .language-toggle {
-    margin-top: 15px;
+  .navbar ul li a {
+    font-size: 24px; /* Mobil menü bağlantıları daha büyük */
+    padding: 10px 0; /* Tıklama alanını genişlet */
+    display: block; /* Tam genişlik kaplaması için */
+  }
+
+  .social-links {
+    margin-top: 30px; /* Navigasyondan sonra boşluk */
+    gap: 25px;
+  }
+
+  .social-links a {
+    font-size: 28px;
+  }
+
+  .language-toggle {
+    margin-top: 20px;
+  }
+
+  .connect-button {
+    margin-top: 30px;
+    font-size: 18px;
+    padding: 12px 25px;
+  }
+
+  /* Menü açıldığında header'ın arka planını değiştir (isteğe bağlı) */
+  .header.menu-open {
+    background-color: transparent; /* Menü tam ekranı kapladığı için header'ı şeffaf yapabiliriz */
+    box-shadow: none; /* Gölgeyi kaldır */
   }
 }
 
+/* Daha küçük mobil cihazlar için ekstra düzenlemeler (isteğe bağlı) */
 @media (max-width: 768px) {
   .header {
     padding: 10px 15px;
   }
   .logo-image {
-    height: 45px; /* Mobil cihazlarda daha küçük logo */
+    height: 45px;
   }
-  .navbar ul {
-    gap: 8px;
+  .hamburger-menu {
+    width: 28px;
+    height: 22px;
+  }
+  .hamburger-menu .bar {
+    height: 2.5px;
+  }
+  .header.menu-open .hamburger-menu .bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .header.menu-open .hamburger-menu .bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+  .nav-container.active {
+    padding-top: 60px; /* Daha küçük ekranlar için üst boşluk */
   }
   .navbar ul li a {
-    font-size: 16px;
-  }
-  .social-links a {
     font-size: 20px;
   }
+  .social-links a {
+    font-size: 24px;
+  }
   .connect-button {
-    font-size: 14px;
-    padding: 8px 15px;
+    font-size: 16px;
+    padding: 10px 20px;
   }
 }
