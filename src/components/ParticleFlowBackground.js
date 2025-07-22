@@ -3,10 +3,11 @@ import React, { useRef, useEffect } from 'react';
 const ParticleFlowBackground = () => {
   const canvasRef = useRef(null);
   const particles = useRef([]);
+  const shootingStars = useRef([]);
   const animationFrameId = useRef(null);
 
-  const PARTICLE_COUNT = 70;
-  const PARTICLE_COLOR = 'rgba(248, 241, 252, 1)';
+  const PARTICLE_COUNT = 400;
+  const PARTICLE_COLOR = 'white';
   const SPEED = 0.3;
 
   useEffect(() => {
@@ -26,9 +27,20 @@ const ParticleFlowBackground = () => {
       particles.current = Array.from({ length: PARTICLE_COUNT }, () => ({
         x: Math.random() * width,
         y: Math.random() * height,
-        radius: 1.5 + Math.random() * 2,
+        radius: 0.7 + Math.random() * 1.2,
         vy: SPEED + Math.random() * 0.5,
       }));
+    };
+
+    const createShootingStar = () => {
+      shootingStars.current.push({
+        x: Math.random() * width * 0.8,
+        y: Math.random() * height * 0.4,
+        length: 100 + Math.random() * 60, // daha kısa
+        speed: 12 + Math.random() * 6,    // daha hızlı
+        angle: Math.PI / 3,
+        alpha: 1,
+      });
     };
 
     const draw = () => {
@@ -39,11 +51,39 @@ const ParticleFlowBackground = () => {
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, width, height);
 
+      // Parçacıklar (yıldızlar)
       particles.current.forEach(p => {
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
         ctx.fillStyle = PARTICLE_COLOR;
+        ctx.shadowColor = 'white';
+        ctx.shadowBlur = 5;
         ctx.fill();
+        ctx.shadowBlur = 0;
+      });
+
+      // Kayan yıldızlar
+      shootingStars.current.forEach((s, index) => {
+        const dx = Math.cos(s.angle) * s.length;
+        const dy = Math.sin(s.angle) * s.length;
+
+        ctx.beginPath();
+        ctx.moveTo(s.x, s.y);
+        ctx.lineTo(s.x + dx, s.y + dy);
+        ctx.strokeStyle = `rgba(255, 255, 255, ${s.alpha})`;
+        ctx.lineWidth = 2;
+        ctx.shadowColor = 'white';
+        ctx.shadowBlur = 10;
+        ctx.stroke();
+        ctx.shadowBlur = 0;
+
+        s.x += Math.cos(s.angle) * s.speed;
+        s.y += Math.sin(s.angle) * s.speed;
+        s.alpha -= 0.05; // daha kısa ömür
+
+        if (s.alpha <= 0 || s.x > width || s.y > height) {
+          shootingStars.current.splice(index, 1);
+        }
       });
     };
 
@@ -75,8 +115,15 @@ const ParticleFlowBackground = () => {
 
     window.addEventListener('resize', handleResize);
 
+    const shootingStarInterval = setInterval(() => {
+      if (Math.random() > 0.3) {
+        createShootingStar();
+      }
+    }, 2000); // daha sık (her 2 saniyede bir olasılıkla)
+
     return () => {
       cancelAnimationFrame(animationFrameId.current);
+      clearInterval(shootingStarInterval);
       window.removeEventListener('resize', handleResize);
     };
   }, []);
@@ -92,7 +139,7 @@ const ParticleFlowBackground = () => {
         height: '100vh',
         zIndex: 0,
         pointerEvents: 'none',
-        filter: 'blur(12px)',
+        filter: 'blur(1px)',
       }}
     />
   );
